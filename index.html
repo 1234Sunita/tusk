@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<form action="register.php" method="POST">
+<table>
+<tr>
+<td>Reg_no:</td>
+<td><input type="email" name="email" class="textInput"></td>
+</tr>
+<tr>
+<td>Name:</td>
+<td><input type="text" name="username" class="textInput"></td>
+</tr>
+<tr>
+<td>Branch:</td> 
+<td><input type="text" name="branch" class="textInput"></td>
+</tr>
+
+<tr>
+<td>Date_of_birth:</td>
+<td><input type="int" name="dob" class="textInput"></td>
+</tr>
+<tr>
+
+<td>Semester:</td>
+<td><input type="email" name="email" class="textInput"></td>
+</tr>
+<tr>
+<td>Category:</td>
+<td><input type="email" name="email" class="textInput"></td>
+</tr>
+
+<tr>
+<td>Mobile:</td>
+<td><input type="email" name="email" class="textInput"></td>
+</tr>
+
+<tr>
+<td>Email:</td>
+<td><input type="email" name="email" class="textInput"></td>
+</tr>
+<tr>
+<td>Institute:</td>
+<td><input type="email" name="email" class="textInput"></td>
+</tr>
+
+<tr>
+<td><input type="submit" name="submit" value="Submit"></td>
+</tr>
+</table>
+</form>
+</body>
+</html>
+<?php
+session_start();
+//connect to database
+$con= mysqli_connect("localhost","root","") or die(mysql_error());
+$db=mysqli_select_db($con,"registerdb") or die(mysql_error());
+if (!$db)
+  {
+  die ("Can\'t use registerdb : " . mysql_error());
+  }
+if(isset($_POST['submit']))
+{
+
+$username=$_POST['username'];
+$password=$_POST['password'];
+$email=$_POST['email'];
+if($username=='')
+{
+echo"<script>alert('enter your name')</script>";
+}
+if($password=='')
+{
+echo"<script>alert('enter your password')</script>";
+}
+if($email=='')
+{
+echo"<script>alert('enter your email')</script>";
+}
+else{
+
+$sql="insert into users(username,password,email) values('$username','$password','$email')";
+
+
+
+if(mysqli_query($con,$sql))
+{
+echo"<script>alert('registered!')</script>";
+}
+}
+}
+?>
